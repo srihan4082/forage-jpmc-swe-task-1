@@ -1,0 +1,238 @@
+From 026c0b43a40102b88e54dc1eab58fae0d8d6fa9c Mon Sep 17 00:00:00 2001
+From: srihan4082 <srihanpoosala@gmail.com>
+Date: Mon, 16 Sep 2024 12:36:10 +0530
+Subject: [PATCH] Task1
+
+---
+ .idea/.gitignore                               |  3 +++
+ .idea/forage-jpmc-swe-task-1.iml               | 18 ++++++++++++++++++
+ .idea/inspectionProfiles/profiles_settings.xml |  6 ++++++
+ .idea/misc.xml                                 |  7 +++++++
+ .idea/modules.xml                              |  8 ++++++++
+ .idea/vcs.xml                                  |  6 ++++++
+ client3.py                                     | 10 +++++++---
+ jpmc_forage_sde/.idea/.gitignore               |  3 +++
+ .../inspectionProfiles/profiles_settings.xml   |  6 ++++++
+ jpmc_forage_sde/.idea/jpmc_forage_sde.iml      | 10 ++++++++++
+ jpmc_forage_sde/.idea/misc.xml                 |  4 ++++
+ jpmc_forage_sde/.idea/modules.xml              |  8 ++++++++
+ jpmc_forage_sde/.idea/vcs.xml                  |  6 ++++++
+ 13 files changed, 92 insertions(+), 3 deletions(-)
+ create mode 100644 .idea/.gitignore
+ create mode 100644 .idea/forage-jpmc-swe-task-1.iml
+ create mode 100644 .idea/inspectionProfiles/profiles_settings.xml
+ create mode 100644 .idea/misc.xml
+ create mode 100644 .idea/modules.xml
+ create mode 100644 .idea/vcs.xml
+ create mode 100644 jpmc_forage_sde/.idea/.gitignore
+ create mode 100644 jpmc_forage_sde/.idea/inspectionProfiles/profiles_settings.xml
+ create mode 100644 jpmc_forage_sde/.idea/jpmc_forage_sde.iml
+ create mode 100644 jpmc_forage_sde/.idea/misc.xml
+ create mode 100644 jpmc_forage_sde/.idea/modules.xml
+ create mode 100644 jpmc_forage_sde/.idea/vcs.xml
+
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+new file mode 100644
+index 0000000..26d3352
+--- /dev/null
++++ b/.idea/.gitignore
+@@ -0,0 +1,3 @@
++# Default ignored files
++/shelf/
++/workspace.xml
+diff --git a/.idea/forage-jpmc-swe-task-1.iml b/.idea/forage-jpmc-swe-task-1.iml
+new file mode 100644
+index 0000000..5221cd1
+--- /dev/null
++++ b/.idea/forage-jpmc-swe-task-1.iml
+@@ -0,0 +1,18 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="PYTHON_MODULE" version="4">
++  <component name="NewModuleRootManager">
++    <content url="file://$MODULE_DIR$">
++      <excludeFolder url="file://$MODULE_DIR$/.venv" />
++      <excludeFolder url="file://$MODULE_DIR$/jpmc_forage_sde/.venv" />
++    </content>
++    <orderEntry type="jdk" jdkName="Python 3.11 (forage-jpmc-swe-task-1)" jdkType="Python SDK" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++  <component name="PyDocumentationSettings">
++    <option name="format" value="PLAIN" />
++    <option name="myDocStringFormat" value="Plain" />
++  </component>
++  <component name="TestRunnerService">
++    <option name="PROJECT_TEST_RUNNER" value="py.test" />
++  </component>
++</module>
+\ No newline at end of file
+diff --git a/.idea/inspectionProfiles/profiles_settings.xml b/.idea/inspectionProfiles/profiles_settings.xml
+new file mode 100644
+index 0000000..105ce2d
+--- /dev/null
++++ b/.idea/inspectionProfiles/profiles_settings.xml
+@@ -0,0 +1,6 @@
++<component name="InspectionProjectProfileManager">
++  <settings>
++    <option name="USE_PROJECT_PROFILE" value="false" />
++    <version value="1.0" />
++  </settings>
++</component>
+\ No newline at end of file
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+new file mode 100644
+index 0000000..9bb04f1
+--- /dev/null
++++ b/.idea/misc.xml
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="Black">
++    <option name="sdkName" value="Python 3.11 (jpmc_forage_sde)" />
++  </component>
++  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.11 (forage-jpmc-swe-task-1)" project-jdk-type="Python SDK" />
++</project>
+\ No newline at end of file
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+new file mode 100644
+index 0000000..973696f
+--- /dev/null
++++ b/.idea/modules.xml
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/.idea/forage-jpmc-swe-task-1.iml" filepath="$PROJECT_DIR$/.idea/forage-jpmc-swe-task-1.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+new file mode 100644
+index 0000000..35eb1dd
+--- /dev/null
++++ b/.idea/vcs.xml
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+diff --git a/client3.py b/client3.py
+index 3fc09b7..d0313d3 100644
+--- a/client3.py
++++ b/client3.py
+@@ -35,14 +35,16 @@ def getDataPoint(quote):
+     stock = quote['stock']
+     bid_price = float(quote['top_bid']['price'])
+     ask_price = float(quote['top_ask']['price'])
+-    price = bid_price
++    price = (bid_price + ask_price) / 2
+     return stock, bid_price, ask_price, price
+ 
+ 
+ def getRatio(price_a, price_b):
+     """ Get ratio of price_a and price_b """
+     """ ------------- Update this function ------------- """
+-    return 1
++    if price_b == 0:
++        return
++    return price_a / price_b
+ 
+ 
+ # Main
+@@ -52,8 +54,10 @@ if __name__ == "__main__":
+         quotes = json.loads(urllib.request.urlopen(QUERY.format(random.random())).read())
+ 
+         """ ----------- Update to get the ratio --------------- """
++        prices = {}
+         for quote in quotes:
+             stock, bid_price, ask_price, price = getDataPoint(quote)
++            prices[stock] = price
+             print("Quoted %s at (bid:%s, ask:%s, price:%s)" % (stock, bid_price, ask_price, price))
+ 
+-        print("Ratio %s" % getRatio(price, price))
++        print("Ratio %s" % getRatio(prices['ABC'], prices['DEF']))
+diff --git a/jpmc_forage_sde/.idea/.gitignore b/jpmc_forage_sde/.idea/.gitignore
+new file mode 100644
+index 0000000..26d3352
+--- /dev/null
++++ b/jpmc_forage_sde/.idea/.gitignore
+@@ -0,0 +1,3 @@
++# Default ignored files
++/shelf/
++/workspace.xml
+diff --git a/jpmc_forage_sde/.idea/inspectionProfiles/profiles_settings.xml b/jpmc_forage_sde/.idea/inspectionProfiles/profiles_settings.xml
+new file mode 100644
+index 0000000..105ce2d
+--- /dev/null
++++ b/jpmc_forage_sde/.idea/inspectionProfiles/profiles_settings.xml
+@@ -0,0 +1,6 @@
++<component name="InspectionProjectProfileManager">
++  <settings>
++    <option name="USE_PROJECT_PROFILE" value="false" />
++    <version value="1.0" />
++  </settings>
++</component>
+\ No newline at end of file
+diff --git a/jpmc_forage_sde/.idea/jpmc_forage_sde.iml b/jpmc_forage_sde/.idea/jpmc_forage_sde.iml
+new file mode 100644
+index 0000000..2c80e12
+--- /dev/null
++++ b/jpmc_forage_sde/.idea/jpmc_forage_sde.iml
+@@ -0,0 +1,10 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="PYTHON_MODULE" version="4">
++  <component name="NewModuleRootManager">
++    <content url="file://$MODULE_DIR$">
++      <excludeFolder url="file://$MODULE_DIR$/.venv" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+diff --git a/jpmc_forage_sde/.idea/misc.xml b/jpmc_forage_sde/.idea/misc.xml
+new file mode 100644
+index 0000000..86785ee
+--- /dev/null
++++ b/jpmc_forage_sde/.idea/misc.xml
+@@ -0,0 +1,4 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.11 (jpmc_forage_sde)" project-jdk-type="Python SDK" />
++</project>
+\ No newline at end of file
+diff --git a/jpmc_forage_sde/.idea/modules.xml b/jpmc_forage_sde/.idea/modules.xml
+new file mode 100644
+index 0000000..3087540
+--- /dev/null
++++ b/jpmc_forage_sde/.idea/modules.xml
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/.idea/jpmc_forage_sde.iml" filepath="$PROJECT_DIR$/.idea/jpmc_forage_sde.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
+diff --git a/jpmc_forage_sde/.idea/vcs.xml b/jpmc_forage_sde/.idea/vcs.xml
+new file mode 100644
+index 0000000..6c0b863
+--- /dev/null
++++ b/jpmc_forage_sde/.idea/vcs.xml
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+-- 
+2.43.0.windows.1
+
